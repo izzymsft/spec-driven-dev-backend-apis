@@ -1,5 +1,5 @@
 def main():
-    print("Hello from spec-driven-dev-backend-apis!")
+    print("Hello from Contoso Backend APIs!")
 
 
 if __name__ == "__main__":
