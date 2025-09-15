@@ -26,11 +26,6 @@ The `customers` Cosmos DB collection has JSON schema:
       "format": "uuid",
       "description": "Unique identifier for the user account"
     },
-    "email": {
-      "type": "string",
-      "format": "email",
-      "description": "User's email address"
-    },
     "firstName": {
       "type": "string",
       "description": "User's first name"
@@ -45,7 +40,7 @@ The `customers` Cosmos DB collection has JSON schema:
       "description": "Category of the user account"
     }
   },
-  "required": ["id", "email", "firstName", "lastName", "accountCategory"],
+  "required": ["id", "firstName", "lastName", "accountCategory"],
   "additionalProperties": false
 }
 
