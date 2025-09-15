@@ -1,0 +1,118 @@
+### Test the Contoso Customer API endpoints
+### Make sure to set environment variables before running the server:
+### export COSMOS_CONNECTION_STRING="AccountEndpoint=https://your-cosmos-account.documents.azure.com:443/;AccountKey=your-key;"
+### export COSMOS_DATABASE_NAME="contoso_customer_db"
+### Then run: python main.py
+
+@baseUrl = http://localhost:8000
+
+### Test root endpoint
+GET {{baseUrl}}/ HTTP/1.1
+
+### Test health check
+GET {{baseUrl}}/health HTTP/1.1
+
+### Create a new customer
+POST {{baseUrl}}/api/customers HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "accountCategory": "Standard"
+}
+
+### List all customers (with default pagination)
+GET {{baseUrl}}/api/customers HTTP/1.1
+
+### List customers with pagination
+GET {{baseUrl}}/api/customers?start=0&limit=5 HTTP/1.1
+
+### Get a specific customer (replace with actual customer ID from create response)
+GET {{baseUrl}}/api/customers/123e4567-e89b-12d3-a456-426614174000 HTTP/1.1
+
+### Update a customer (replace with actual customer ID)
+PUT {{baseUrl}}/api/customers/123e4567-e89b-12d3-a456-426614174000 HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Jane",
+  "accountCategory": "Premium"
+}
+
+### Delete a customer (replace with actual customer ID)
+DELETE {{baseUrl}}/api/customers/123e4567-e89b-12d3-a456-426614174000 HTTP/1.1
+
+### Create a customer address (replace customerId with actual customer ID)
+POST {{baseUrl}}/api/customers/addresses HTTP/1.1
+Content-Type: application/json
+
+{
+  "customerId": "123e4567-e89b-12d3-a456-426614174000",
+  "address": "123 Main St",
+  "address2": "Apt 4B",
+  "city": "Seattle",
+  "state": "WA",
+  "zipCode": "98101",
+  "addressType": "shipping"
+}
+
+### List addresses for a customer (replace customerId with actual customer ID)
+GET {{baseUrl}}/api/customers/123e4567-e89b-12d3-a456-426614174000/addresses HTTP/1.1
+
+### List addresses with pagination
+GET {{baseUrl}}/api/customers/123e4567-e89b-12d3-a456-426614174000/addresses?start=0&limit=5 HTTP/1.1
+
+### Get a specific address (replace IDs with actual values)
+GET {{baseUrl}}/api/customers/123e4567-e89b-12d3-a456-426614174000/addresses/123e4567-e89b-12d3-a456-426614174001 HTTP/1.1
+
+### Update an address (replace IDs with actual values)
+PUT {{baseUrl}}/api/customers/123e4567-e89b-12d3-a456-426614174000/addresses/123e4567-e89b-12d3-a456-426614174001 HTTP/1.1
+Content-Type: application/json
+
+{
+  "city": "Portland",
+  "state": "OR",
+  "zipCode": "97201"
+}
+
+### Delete an address (replace IDs with actual values)
+DELETE {{baseUrl}}/api/customers/123e4567-e89b-12d3-a456-426614174000/addresses/123e4567-e89b-12d3-a456-426614174001 HTTP/1.1
+
+### Test validation errors
+
+### Invalid customer account category
+POST {{baseUrl}}/api/customers HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Test",
+  "lastName": "User",
+  "accountCategory": "InvalidCategory"
+}
+
+### Invalid address state format
+POST {{baseUrl}}/api/customers/addresses HTTP/1.1
+Content-Type: application/json
+
+{
+  "customerId": "123e4567-e89b-12d3-a456-426614174000",
+  "address": "123 Main St",
+  "city": "Seattle",
+  "state": "Washington",
+  "zipCode": "98101",
+  "addressType": "shipping"
+}
+
+### Invalid ZIP code format
+POST {{baseUrl}}/api/customers/addresses HTTP/1.1
+Content-Type: application/json
+
+{
+  "customerId": "123e4567-e89b-12d3-a456-426614174000",
+  "address": "123 Main St",
+  "city": "Seattle",
+  "state": "WA",
+  "zipCode": "123456789",
+  "addressType": "shipping"
+}

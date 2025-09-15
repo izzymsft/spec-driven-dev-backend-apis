@@ -113,12 +113,14 @@ The `addresses` Cosmos DB collection has JSON schema:
 
 ### 2.1 Application Dependencies
 
-The REST API application is a FastAPI application using the following dependencies
+The REST API application is a FastAPI application using the following uv dependencies
 
 - azure-cosmos 4.9.0
 - fastapi 0.116.1
 - pydantic 2.11.9
 - pytest 8.4.2
+- httpx 0.28.1
+- uvicorn[standard]
 
 The package dependency manager is uv
 
