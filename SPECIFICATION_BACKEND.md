@@ -119,6 +119,7 @@ The REST API application is a FastAPI application using the following dependenci
 - azure-cosmos 4.9.0
 - fastapi 0.116.1
 - pydantic 2.11.9
+- pytest 8.4.2
 
 The package dependency manager is uv
 
@@ -211,4 +212,18 @@ DELETE /api/customers/{customerId}/addresses/{addressId}
 This will be used to remove existing records from the `customers` collection by where the {customerId} path parameter matches the `id` field in the `customers` collection.
 
 This will use the HTTP DELETE request method.
+
+### 5.1 Environment Variables for the App Configuration
+
+The following environment variables are available to connect to Cosmos DB
+
+- COSMOS_CONNECTION_STRING: this is the Cosmos DB Connection String
+- COSMOS_ENDPOINT: this is the Cosmos DB resource endpoint
+
+### 6.1 Unit Testing with Pytests
+
+The unit tests will be created in the tests directory using `pytest`.
+
+This will be used to make sure that the application is free from errors.
+
 
