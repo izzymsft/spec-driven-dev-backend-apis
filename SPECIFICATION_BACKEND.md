@@ -11,6 +11,8 @@ This is the JSON Schemas of the records in the Cosmos DB collections
 
 ### 1.1 Customers Collection
 
+The partition key for the `customers` Cosmos DB collection is "/id"
+
 The `customers` Cosmos DB collection has JSON schema:
 
 ````json
@@ -50,6 +52,8 @@ The `customers` Cosmos DB collection has JSON schema:
 ````
 
 ### 1.2 Addresses Collection
+
+The partition key for the `addresses` Cosmos DB collection is "/customerId"
 
 The `addresses` Cosmos DB collection has JSON schema:
 
