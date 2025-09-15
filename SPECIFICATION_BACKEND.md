@@ -223,6 +223,7 @@ The following environment variables are available to connect to Cosmos DB
 
 - COSMOS_CONNECTION_STRING: this is the Cosmos DB Connection String
 - COSMOS_ENDPOINT: this is the Cosmos DB resource endpoint
+- COSMOS_DATABASE_NAME: the database name
 
 ### 6.1 Unit Testing with Pytests
 
